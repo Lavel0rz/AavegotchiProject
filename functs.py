@@ -6,10 +6,12 @@ import streamlit as st
 
 def grafico(df,district):
     df['distrito']=df['distrito'].astype(int)
+    df['tamaño']=df['tamaño'].astype(int)
+    df['tamaño']=df['tamaño'].apply(sizer)
     df2 = df[df['distrito']==district]
     total = 'Total sales',len(df2)
     primer = df2.groupby('tamaño')['precio'].mean()
-    fig = px.bar(primer, x=primer.index, title='Average Prices of Sold Parcels', y='precio', width=600, height=400,
+    fig = px.bar(primer, x=primer.index, title=f'Average Prices of Sold Parcels in district {district}', y='precio', width=600, height=400,
                  labels={  # replaces default labels by column name
                      "precio": "Mean Price", 'tamaño': 'Parcel Size'
                  })
@@ -88,3 +90,11 @@ def run_query(data):
         return request.json()
     else:
         raise Exception('Query failed. return code is {}.      {}'.format(request.status_code, data))
+
+def sizer(num):
+    if num == 0:
+        return 'Humble'
+    elif num == 1:
+        return 'Reasonable'
+    else:
+        return 'Spacious'
