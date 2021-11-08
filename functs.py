@@ -80,8 +80,9 @@ def districtfloors(df2,D,Size):
     df4 = df3[df3['tamaño']==Size]
     grouped = df4.groupby(['precio'])['BazaarID'].min()
     x = (grouped.values[0])
+    y = grouped.index[0]
     url = "https://aavegotchi.com/baazaar/erc721/"+str(x)
-    return st.write("Current Floor: ["+url+"]("+url+")")
+    return st.write(f"Current Floor:     {y}$GHST  ["+url+"]("+url+")")
 
 def run_query(data):
     request = requests.post('https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
