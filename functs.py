@@ -9,13 +9,14 @@ def grafico(df,district):
     df['tamaño']=df['tamaño'].astype(int)
     df['tamaño']=df['tamaño'].apply(sizer)
     df2 = df[df['distrito']==district]
-    total = 'Total sales',len(df2)
+    total = len(df2)
     primer = df2.groupby('tamaño')['precio'].mean()
     fig = px.bar(primer, x=primer.index, title=f'Average Prices of Sold Parcels in district {district}', y='precio', width=600, height=400,
                  labels={  # replaces default labels by column name
                      "precio": "Mean Price", 'tamaño': 'Parcel Size'
                  })
-    return st.plotly_chart(fig),st.text(total)
+    return st.plotly_chart(fig),st.text(f'Total number of parcels sold in this district: {total}')
+
 
 def prepro(data):
     newdic = data.get('data',0)
