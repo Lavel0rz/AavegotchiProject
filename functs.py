@@ -90,7 +90,7 @@ def run_query(data):
         return request.json()
     else:
         raise Exception('Query failed. return code is {}.      {}'.format(request.status_code, data))
-
+#mapeo
 def sizer(num):
     if num == 0:
         return 'Humble'
