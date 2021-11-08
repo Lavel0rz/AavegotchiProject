@@ -1,6 +1,5 @@
 import streamlit as st
-import pandas as pd
-
+import time
 from functs import grafico,prepro
 import requests
 
@@ -46,3 +45,4 @@ if option == 'Districts Visualizer':
 district = st.select_slider('Select District', [1,2,3,4,5,14,15,16,17,18,19,20,21,22,39,40,41,42,43])
 
 grafico(df,district)
+time.sleep(2)
