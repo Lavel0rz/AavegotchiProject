@@ -69,8 +69,12 @@ df3 = pd.concat([df1, df2])
 df = prepro(result)
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
-option = st.sidebar.selectbox('Home',['Districts Visualizer','Floor Sniper','Price Estimator'])
+option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator'])
+if option == 'HOME':
+    st.header('WELCOME TO THE GOTCHIVERSE')
+    st.image('citadelimage.png')
 if option == 'Districts Visualizer':
+    st.image('districts.jpg',width = 450)
     st.title('Aavegotchi Parcels Average Bazaar Prices By District')
 
     district = st.select_slider('Select District', [1,2,3,4,5,14,15,16,17,18,19,20,21,22,39,40,41,42,43])
@@ -86,6 +90,7 @@ if option == 'Floor Sniper':
     time.sleep(2)
 
 if option == 'Price Estimator':
+    st.image('gotchistats.png',width=600)
     pred = []
     BRS = int(st.number_input('Enter BRS'))
     mit2x = st.selectbox('Does your gotchi have 2x myth eyes?',('YES','NO'))
