@@ -88,7 +88,7 @@ if option == 'Floor Sniper':
 if option == 'Price Estimator':
     pred = []
     BRS = int(st.number_input('Enter BRS'))
-    mit2x = st.selectbox('Does yout gotchi have 2x myth eyes?',('YES','NO'))
+    mit2x = st.selectbox('Does your gotchi have 2x myth eyes?',('YES','NO'))
     if mit2x == 'YES':
         mit2x = 1
     else:
