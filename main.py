@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from functs import grafico,prepro,prepro2,districtfloors,run_query
+from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model
 
 import pandas as pd
 
@@ -69,7 +69,7 @@ df3 = pd.concat([df1, df2])
 df = prepro(result)
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
-option = st.sidebar.selectbox('Home',['Districts Visualizer','Floor Sniper'])
+option = st.sidebar.selectbox('Home',['Districts Visualizer','Floor Sniper','Price Estimator'])
 if option == 'Districts Visualizer':
     st.title('Aavegotchi Parcels Average Bazaar Prices By District')
 
@@ -84,4 +84,23 @@ if option == 'Floor Sniper':
     print(df3)
     districtfloors(df3,D,Size)
     time.sleep(2)
+
+if option == 'Price Estimator':
+    pred = []
+    BRS = int(st.number_input('Enter BRS'))
+    mit2x = st.selectbox('Does yout gotchi have 2x myth eyes?',('YES','NO'))
+    if mit2x == 'YES':
+        mit2x = 1
+    else:
+        mit2x = 0
+    KIN = int(st.number_input('Kinship Level'))
+    EXP = int(st.number_input('Experience Level'))
+    HAUNT = int(st.radio('Haunt',(1,2)))
+    pred.append(BRS)
+    pred.append(mit2x)
+    pred.append(KIN)
+    pred.append(EXP)
+    pred.append(HAUNT)
+    prediccion = loaded_model.predict([pred])
+    st.markdown(f"""Estimation : {int(prediccion)}$GHST""")
 

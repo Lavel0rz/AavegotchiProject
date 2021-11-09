@@ -2,8 +2,8 @@ import requests
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-
-
+import pickle
+loaded_model = pickle.load(open('final.pkl', 'rb'))
 def grafico(df,district):
     df['distrito']=df['distrito'].astype(int)
     df['tamaño']=df['tamaño'].astype(int)
@@ -100,3 +100,4 @@ def sizer(num):
         return 'Reasonable'
     else:
         return 'Spacious'
+
