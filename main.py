@@ -113,4 +113,7 @@ if option == 'Neighboring Parcels':
     st.title('Search for neighboring parcels near yours')
     st.text('This little widget will look for listed parcels in the bazaar and pull the closest one to the one you input through your parcel#ID')
     PID = int(st.number_input('Enter your Parcel ID#'))
-    searchID(PID)
+    try:
+        searchID(PID)
+    except:
+        st.error('Invalid Parcel ID')
