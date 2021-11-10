@@ -81,6 +81,47 @@ def prepro2(data):
     df['precio']=df['precio'].astype(float)
     df['precio'] = df['precio'].apply(lambda x: x/1000000000000000000)
     return df
+def prepro3(data):
+    newdic = data.get('data',0)
+    newdic2 = newdic.get('erc721Listings')
+    nuevos = []
+    new = []
+    new2 = []
+    new3 = []
+    new4 = []
+    new5 = []
+    new6 = []
+    new7= []
+    for i in newdic2:
+        nuevos.append(i)
+    for i in nuevos:
+        new.append(i.get('priceInWei'))
+        new2.append(i.get('district'))
+        new3.append(i.get('size'))
+        new4.append(i.get('id'))
+        new5.append(i.get('coordinateX'))
+        new6.append(i.get('coordinateY'))
+        new7.append(i.get('parcel'))
+    df = pd.DataFrame({'precio':new,
+                 'distrito':new2,
+                 'tamaño':new3,
+                 'BazaarID':new4,
+                 'CoorX':new5,
+                 'CoorY':new6,
+                 'ParcelID':new7})
+    df['precio']=df['precio'].astype(float)
+    df['precio'] = df['precio'].apply(lambda x: x/1000000000000000000)
+    df['CoorX'] = df['CoorX'].astype(int)
+    df['CoorY'] = df['CoorY'].astype(int)
+    x = df['CoorX'].values
+    y = df['CoorY'].values
+    geocords = []
+    z = 0
+    for i in x:
+        geocords.append([i, y[z]])
+        z = z + 1
+    df['Geo'] = geocords
+    return df
 
 def districtfloors(df2,D,Size):
     if Size == 'Humble':
@@ -124,7 +165,7 @@ def calc_distances(a,b):
     print(p2,p1)
     distance = math. sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))
     return distance
-def searchID(ID):
+def searchID(df,ID):
 
 
     dfbus = allparcels[allparcels['ParcelID']==ID]
@@ -136,10 +177,10 @@ def searchID(ID):
 
 
 
-    print(Bazaarparcels['Geo'].values[0][0])
-    distancias = Bazaarparcels['Geo'].map(lambda x: calc_distances(coordejem, x))
-    Bazaarparcels['distances']=distancias
-    grouped = Bazaarparcels.groupby(['distances'])['BazaarID'].min()
+    print(df['Geo'].values[0][0])
+    distancias = df['Geo'].map(lambda x: calc_distances(coordejem, x))
+    df['distances']=distancias
+    grouped = df.groupby(['distances'])['BazaarID'].min()
     z=grouped.values[0]
 
     url = "https://aavegotchi.com/baazaar/erc721/" + str(z)

@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID
+from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3
 
 import pandas as pd
 
@@ -57,16 +57,77 @@ query3 = '''
   }
 }
 
-
+'''
+query4 = '''
+{
+  erc721Listings (orderBy:tokenId,first:1000,where:{category:4,timePurchased:0,cancelled:false}) {
+         id
+    category
+    priceInWei
+    size
+    timePurchased
+    district
+    coordinateX
+    coordinateY
+    parcel {
+               id 
+             }
+  }
+}
 
 '''
+query5 = '''
+{
+  erc721Listings (orderBy:tokenId,first:1000,skip:1000,where:{category:4,timePurchased:0,cancelled:false}) {
+         id
+    category
+    priceInWei
+    size
+    timePurchased
+    district
+    coordinateX
+    coordinateY
+    parcel {
+               id 
+             }
+  }
+}
+
+'''
+query6 = '''
+{
+  erc721Listings (orderBy:tokenId,first:1000,skip:2000,where:{category:4,timePurchased:0,cancelled:false}) {
+         id
+    category
+    priceInWei
+    size
+    timePurchased
+    district
+    coordinateX
+    coordinateY
+    parcel {
+               id 
+             }
+  }
+}
+
+'''
+
+result6 = run_query(query6)
+result5 = run_query(query5)
+result4 = run_query(query4)
 result2 = run_query(query2)
 result3 = run_query(query3)
 result = run_query(query)
+
+df6 = prepro3(result6)
+df5 = prepro3(result5)
+df4 = prepro3(result4)
 df1 = prepro2(result2)
 df2 = prepro2(result3)
 df3 = pd.concat([df1, df2])
 df = prepro(result)
+dfparcels = pd.concat([df4,df5,df6])
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
 option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator','Neighboring Parcels'])
@@ -114,6 +175,6 @@ if option == 'Neighboring Parcels':
     st.text('This little widget will look for listed parcels in the bazaar and pull the closest one to the one you input through your parcel#ID')
     PID = int(st.number_input('Enter your Parcel ID#'))
     try:
-        searchID(PID)
+        searchID(dfparcels,PID)
     except:
         st.error('Invalid Parcel ID')
