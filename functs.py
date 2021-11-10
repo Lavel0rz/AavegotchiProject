@@ -7,20 +7,11 @@ import math
 #load model
 loaded_model = pickle.load(open('final.pkl', 'rb'))
 allparcels = pd.read_csv('ALLparcels.csv')
-Bazaarparcels = pd.read_csv('BazaarParcels3.csv')
+
 allparcels['ParcelID'] = allparcels['ParcelID'].astype(int)
 allparcels['CoorX'] = allparcels['CoorX'].astype(int)
 allparcels['CoorY'] = allparcels['CoorY'].astype(int)
-Bazaarparcels['CoorX'] = Bazaarparcels['CoorX'].astype(int)
-Bazaarparcels['CoorY'] = Bazaarparcels['CoorY'].astype(int)
-x = Bazaarparcels['CoorX'].values
-y = Bazaarparcels['CoorY'].values
-geocords = []
-z = 0
-for i in x:
-    geocords.append([i,y[z]])
-    z = z +1
-Bazaarparcels['Geo']=geocords
+
 
 def grafico(df,district):
     df['distrito']=df['distrito'].astype(int)
