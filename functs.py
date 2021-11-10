@@ -3,8 +3,25 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 import pickle
+import math
 #load model
 loaded_model = pickle.load(open('final.pkl', 'rb'))
+allparcels = pd.read_csv('ALLparcels.csv')
+Bazaarparcels = pd.read_csv('BazaarParcels3.csv')
+allparcels['ParcelID'] = allparcels['ParcelID'].astype(int)
+allparcels['CoorX'] = allparcels['CoorX'].astype(int)
+allparcels['CoorY'] = allparcels['CoorY'].astype(int)
+Bazaarparcels['CoorX'] = Bazaarparcels['CoorX'].astype(int)
+Bazaarparcels['CoorY'] = Bazaarparcels['CoorY'].astype(int)
+x = Bazaarparcels['CoorX'].values
+y = Bazaarparcels['CoorY'].values
+geocords = []
+z = 0
+for i in x:
+    geocords.append([i,y[z]])
+    z = z +1
+Bazaarparcels['Geo']=geocords
+
 def grafico(df,district):
     df['distrito']=df['distrito'].astype(int)
     df['tamaño']=df['tamaño'].astype(int)
@@ -82,8 +99,8 @@ def districtfloors(df2,D,Size):
     grouped = df4.groupby(['precio'])['BazaarID'].min()
     x = (grouped.values[0])
     y = grouped.index[0]
-    url = "https://aavegotchi.com/baazaar/erc721/"+str(x)
-    return st.write(f"Current Floor:     {y}$GHST  ["+url+"]("+url+")")
+    url = "https://aavegotchi.com/baazaar/erc721/" + str(x)
+    return st.write(f"Current Floor:     {y}$GHST  [" + url + "](" + url + ")")
 
 def run_query(data):
     request = requests.post('https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
@@ -101,4 +118,29 @@ def sizer(num):
         return 'Reasonable'
     else:
         return 'Spacious'
+def calc_distances(a,b):
+    p1 = a
+    p2 = b
+    print(p2,p1)
+    distance = math. sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))
+    return distance
+def searchID(ID):
 
+
+    dfbus = allparcels[allparcels['ParcelID']==ID]
+
+    x = dfbus['CoorX'].values[0]
+    y = dfbus['CoorY'].values[0]
+    coordejem = [x,y]
+
+
+
+
+    print(Bazaarparcels['Geo'].values[0][0])
+    distancias = Bazaarparcels['Geo'].map(lambda x: calc_distances(coordejem, x))
+    Bazaarparcels['distances']=distancias
+    grouped = Bazaarparcels.groupby(['distances'])['BazaarID'].min()
+    z=grouped.values[0]
+
+    url = "https://aavegotchi.com/baazaar/erc721/" + str(z)
+    return st.write(f"Current Closest Parcel For Sale: [" + url + "](" + url + ")")

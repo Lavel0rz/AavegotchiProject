@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model
+from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID
 
 import pandas as pd
 
@@ -69,7 +69,7 @@ df3 = pd.concat([df1, df2])
 df = prepro(result)
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
-option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator'])
+option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator','Neighboring Parcels'])
 if option == 'HOME':
     st.header('WELCOME TO THE GOTCHIVERSE')
     st.image('citadelimage.png')
@@ -109,3 +109,8 @@ if option == 'Price Estimator':
     prediccion = loaded_model.predict([pred])
     st.markdown(f"""Estimation : {int(prediccion)}$GHST""")
 
+if option == 'Neighboring Parcels':
+    st.title('Search for neighboring parcels near yours')
+    st.text('This little widget will look for listed parcels in the bazaar and pull the closest one to the one you input through your parcel#ID')
+    PID = int(st.number_input('Enter your Parcel ID#'))
+    searchID(PID)
