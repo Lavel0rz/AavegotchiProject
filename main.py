@@ -151,7 +151,12 @@ if option == 'Floor Sniper':
     time.sleep(2)
 
 if option == 'Price Estimator':
-    st.image('gotchistats.png',width=600)
+    st.write("Here's a little price estimator fueled by Machine Learning! Keep in mind the model is not perfect and it seems to not weight Kinship/EXP, take the estimation with a grain of salt")
+    col1, mid, col2 = st.columns([1, 1, 5])
+    with col1:
+        st.image('gotchistats.png', width=500)
+    with col2:
+        st.image('features.png')
     pred = []
     BRS = int(st.number_input('Enter BRS'))
     mit2x = st.selectbox('Does your gotchi have 2x myth eyes?',('YES','NO'))
