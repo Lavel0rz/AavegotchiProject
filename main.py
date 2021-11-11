@@ -158,14 +158,14 @@ if option == 'Price Estimator':
     with col2:
         st.image('features.png')
     pred = []
-    BRS = int(st.number_input('Enter BRS'))
+    BRS = int(st.number_input('Enter BRS',value=450,min_value=324,max_value=600,step=1))
     mit2x = st.selectbox('Does your gotchi have 2x myth eyes?',('YES','NO'))
     if mit2x == 'YES':
         mit2x = 1
     else:
         mit2x = 0
-    KIN = int(st.number_input('Kinship Level'))
-    EXP = int(st.number_input('Experience Level'))
+    KIN = int(st.number_input('Kinship Level',value=50,min_value=0,max_value=100000,step=1))
+    EXP = int(st.number_input('Experience Level',value=50,min_value=0,max_value=100000,step=1))
     HAUNT = int(st.radio('Haunt',(1,2)))
     pred.append(BRS)
     pred.append(mit2x)
@@ -178,7 +178,7 @@ if option == 'Price Estimator':
 if option == 'Neighboring Parcels':
     st.title('Search for neighboring parcels near yours')
     st.text('This little widget will look for listed parcels in the bazaar and pull the closest one to the one you input through your parcel#ID')
-    PID = int(st.number_input('Enter your Parcel ID#'))
+    PID = int(st.number_input('Enter your Parcel ID#',value=1,min_value=1,max_value=100000,step=1))
     try:
         searchID(dfparcels,PID)
     except:
