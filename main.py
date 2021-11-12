@@ -152,7 +152,7 @@ if option == 'Floor Sniper':
 
 if option == 'Price Estimator':
     st.write("Here's a little price estimator fueled by Machine Learning! Keep in mind the model is not perfect and it seems to not weight Kinship/EXP, take the estimation with a grain of salt")
-    col1, mid, col2 = st.columns([1, 1, 5])
+    col1, mid, col2 = st.columns([1, 1, 2])
     with col1:
         st.image('gotchistats.png', width=500)
     with col2:
