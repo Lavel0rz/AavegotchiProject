@@ -5,6 +5,7 @@ from Graficas import plotter
 
 import pandas as pd
 dfventas = pd.read_csv('FechaVentas.csv')
+dfghost = pd.read_csv('GHSTPRICE.csv')
 root_path = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
 
@@ -192,5 +193,10 @@ if option == 'Bazaar Stats':
     with col2:
         plotter(dfventas,None,title = 'Volume Gotchi Weekly Sales in $GHST')
 
-    plotter(dfventas, 'min', title='Floor Gotchi Weekly Prices in $GHST')
+    col3, mid2, col4 = st.columns([1, 1, 2])
+    with col3:
+        plotter(dfventas, 'min', title='Floor Gotchi Weekly Prices in $GHST')
+    with col4:
+        plotter(dfghost, 'avg', title='$GHST Monthly Average Price')
+
 
