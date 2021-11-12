@@ -156,12 +156,9 @@ def districtfloorswalls(df2,D,Size):
     df2['tamaño'] = df2['tamaño'].astype(int)
     df3 = df2[df2['distrito']==D]
     df4 = df3[df3['tamaño']==Size]
-    print(df4)
     df4 = df4[(df4['CoorX'] >= 2448)]
     df4 = df4[(df4['CoorY'] >=1544)]
     df4 = df4[(df4['CoorY'] <= 4736)]
-
-    print(df4)
     grouped = df4.groupby(['precio'])['BazaarID'].min()
     x = (grouped.values[0])
     y = grouped.index[0]

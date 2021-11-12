@@ -125,3 +125,37 @@ query7 = '''
 }
 
 '''
+query8 = '''
+{
+  erc721Listings (orderBy:district,first:1000,skip:1000,where:{category:4,timePurchased_gt:0,cancelled:false}) {
+ 		category
+    priceInWei
+    size
+    timePurchased
+    district
+    parcel {
+ 			  id
+ 			}
+  }
+}
+
+
+
+'''
+query9 = '''
+{
+  erc721Listings (orderBy:district,first:1000,skip:2000,where:{category:4,timePurchased_gt:0,cancelled:false}) {
+ 		category
+    priceInWei
+    size
+    timePurchased
+    district
+    parcel {
+ 			  id
+ 			}
+  }
+}
+
+
+
+'''
