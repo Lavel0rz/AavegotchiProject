@@ -24,6 +24,8 @@ query2= '''
     size
     timePurchased
     district
+    coordinateX
+    coordinateY
     parcel {
                id 
              }
@@ -42,6 +44,8 @@ query3 = '''
     size
     timePurchased
     district
+    coordinateX
+    coordinateY
     parcel {
                id 
              }

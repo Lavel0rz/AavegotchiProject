@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3
+from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3,districtfloorswalls
 from Graficas import plotter
 from querys import query,query2,query3,query4,query5,query6
 
@@ -42,9 +42,16 @@ if option == 'Districts Visualizer':
 if option == 'Floor Sniper':
     D = st.selectbox('Choose District',(1,2,3,4,5,14,15,16,17,18,19,20,21,22,39,40,41,42,43))
     Size = st.selectbox('Choose Size',('Humble','Reasonable','Vertical Spacious','Horizontal Spacious'))
-    print(df3)
-    districtfloors(df3,D,Size)
-    time.sleep(2)
+    try:
+        districtfloors(df3,D,Size)
+        time.sleep(2)
+    except:st.error('No parcels found!')
+    if st.checkbox('Check for main Inner walls Parcels too!'):
+        try:
+            districtfloorswalls(df3,D,Size)
+            st.image('wallz.png',width=650)
+        except:
+            st.error('No inner wall parcels found!')
 
 if option == 'Price Estimator':
     st.write("Here's a little price estimator fueled by Machine Learning! Keep in mind the model is not perfect and it seems to not weight Kinship/EXP, take the estimation with a grain of salt")

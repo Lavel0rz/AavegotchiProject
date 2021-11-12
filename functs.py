@@ -59,6 +59,8 @@ def prepro2(data):
     new2 = []
     new3 = []
     new4 = []
+    new5 = []
+    new6 = []
     for i in newdic2:
         nuevos.append(i)
     for i in nuevos:
@@ -66,10 +68,15 @@ def prepro2(data):
         new2.append(i.get('district'))
         new3.append(i.get('size'))
         new4.append(i.get('id'))
+        new5.append(i.get('coordinateX'))
+        new6.append(i.get('coordinateY'))
     df = pd.DataFrame({'precio':new,
                  'distrito':new2,
                  'tamaño':new3,
-                 'BazaarID':new4})
+                 'BazaarID':new4, 'CoorX':new5,
+                 'CoorY':new6})
+    df['CoorX'] = df['CoorX'].astype(int)
+    df['CoorY'] = df['CoorY'].astype(int)
     df['precio']=df['precio'].astype(float)
     df['precio'] = df['precio'].apply(lambda x: x/1000000000000000000)
     return df
@@ -98,8 +105,8 @@ def prepro3(data):
                  'distrito':new2,
                  'tamaño':new3,
                  'BazaarID':new4,
-                 'CoorX':new5,
-                 'CoorY':new6,
+                       'CoorX': new5,
+                       'CoorY': new6,
                  'ParcelID':new7})
     df['precio']=df['precio'].astype(float)
     df['precio'] = df['precio'].apply(lambda x: x/1000000000000000000)
@@ -134,6 +141,32 @@ def districtfloors(df2,D,Size):
     y = grouped.index[0]
     url = "https://aavegotchi.com/baazaar/erc721/" + str(x)
     return st.write(f"Current Floor:     {y}$GHST  [" + url + "](" + url + ")")
+def districtfloorswalls(df2,D,Size):
+    if Size == 'Humble':
+        Size = 0
+    elif Size == 'Reasonable':
+        Size = 1
+    elif Size == 'Vertical Spacious':
+        Size = 2
+    else:
+        Size = 3
+    df2['CoorX'] = df2['CoorX'].astype(int)
+    df2['CoorY'] = df2['CoorY'].astype(int)
+    df2['distrito']=df2['distrito'].astype(int)
+    df2['tamaño'] = df2['tamaño'].astype(int)
+    df3 = df2[df2['distrito']==D]
+    df4 = df3[df3['tamaño']==Size]
+    print(df4)
+    df4 = df4[(df4['CoorX'] >= 2448)]
+    df4 = df4[(df4['CoorY'] >=1544)]
+    df4 = df4[(df4['CoorY'] <= 4736)]
+
+    print(df4)
+    grouped = df4.groupby(['precio'])['BazaarID'].min()
+    x = (grouped.values[0])
+    y = grouped.index[0]
+    url = "https://aavegotchi.com/baazaar/erc721/" + str(x)
+    return st.write(f"Current Floor:     {y}$GHST  [" + url + "](" + url + ")")
 
 def run_query(data):
     request = requests.post('https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
@@ -154,7 +187,6 @@ def sizer(num):
 def calc_distances(a,b):
     p1 = a
     p2 = b
-    print(p2,p1)
     distance = math. sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))
     return distance
 def searchID(df,ID):
@@ -169,7 +201,6 @@ def searchID(df,ID):
 
 
 
-    print(df['Geo'].values[0][0])
     distancias = df['Geo'].map(lambda x: calc_distances(coordejem, x))
     df['distances']=distancias
     grouped = df.groupby(['distances'])['BazaarID'].min()
