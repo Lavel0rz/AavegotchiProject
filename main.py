@@ -1,9 +1,10 @@
 import streamlit as st
 import time
 from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3
+from Graficas import plotter
 
 import pandas as pd
-
+dfventas = pd.read_csv('FechaVentas.csv')
 root_path = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
 
@@ -130,7 +131,7 @@ df = prepro(result)
 dfparcels = pd.concat([df4,df5,df6])
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
-option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator','Neighboring Parcels'])
+option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator','Neighboring Parcels','Bazaar Stats'])
 if option == 'HOME':
     st.header('WELCOME TO THE GOTCHIVERSE')
     st.image('citadelimage.png')
@@ -183,3 +184,12 @@ if option == 'Neighboring Parcels':
         searchID(dfparcels,PID)
     except:
         st.error('Invalid Parcel ID')
+if option == 'Bazaar Stats':
+    col1, mid, col2 = st.columns([1, 1, 2])
+    with col1:
+        plotter(dfventas,'avg',title = 'Average Gotchi Weekly Sales in $GHST')
+    with col2:
+        plotter(dfventas,None,title = 'Volume Gotchi Weekly Sales in $GHST')
+
+    plotter(dfventas, 'min', title='Floor Gotchi Weekly Prices in $GHST')
+

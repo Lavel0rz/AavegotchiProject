@@ -8,6 +8,7 @@ import math
 loaded_model = pickle.load(open('final.pkl', 'rb'))
 allparcels = pd.read_csv('ALLparcels.csv')
 
+
 allparcels['ParcelID'] = allparcels['ParcelID'].astype(int)
 allparcels['CoorX'] = allparcels['CoorX'].astype(int)
 allparcels['CoorY'] = allparcels['CoorY'].astype(int)
