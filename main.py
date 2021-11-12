@@ -2,26 +2,28 @@ import streamlit as st
 import time
 from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3,districtfloorswalls
 from Graficas import plotter
-from querys import query,query2,query3,query4,query5,query6
+from querys import query,query2,query3,query4,query5,query6,query7
 
 import pandas as pd
 dfventas = pd.read_csv('FechaVentas.csv')
 dfghost = pd.read_csv('GHSTPRICE.csv')
 root_path = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
+result7= run_query(query7)
 result6 = run_query(query6)
 result5 = run_query(query5)
 result4 = run_query(query4)
 result2 = run_query(query2)
 result3 = run_query(query3)
 result = run_query(query)
-
+df7 = prepro2(result7)
 df6 = prepro3(result6)
 df5 = prepro3(result5)
 df4 = prepro3(result4)
 df1 = prepro2(result2)
 df2 = prepro2(result3)
 df3 = pd.concat([df1, df2])
+df3 = pd.concat([df3,df7])
 df = prepro(result)
 dfparcels = pd.concat([df4,df5,df6])
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')

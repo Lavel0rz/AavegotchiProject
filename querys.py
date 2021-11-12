@@ -107,3 +107,21 @@ query6 = '''
 }
 
 '''
+query7 = '''
+{
+  erc721Listings (orderBy:tokenId,first:1000,skip:2000,where:{category:4,timePurchased:0,cancelled:false}) {
+         id
+    category
+    priceInWei
+    size
+    timePurchased
+    district
+    coordinateX
+    coordinateY
+    parcel {
+               id 
+             }
+  }
+}
+
+'''
