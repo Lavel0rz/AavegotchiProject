@@ -185,6 +185,7 @@ if option == 'Neighboring Parcels':
     except:
         st.error('Invalid Parcel ID')
 if option == 'Bazaar Stats':
+    st.title('Some Bazaar Stats as of 12th November 2021')
     col1, mid, col2 = st.columns([1, 1, 2])
     with col1:
         plotter(dfventas,'avg',title = 'Average Gotchi Weekly Sales in $GHST')
