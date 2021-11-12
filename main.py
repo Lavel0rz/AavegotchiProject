@@ -2,118 +2,12 @@ import streamlit as st
 import time
 from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3
 from Graficas import plotter
+from querys import query,query2,query3,query4,query5,query6
 
 import pandas as pd
 dfventas = pd.read_csv('FechaVentas.csv')
 dfghost = pd.read_csv('GHSTPRICE.csv')
 root_path = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
-
-
-query = '''
-{
-  erc721Listings (orderBy:district,first:1000,where:{category:4,timePurchased_gt:0,cancelled:false}) {
- 		category
-    priceInWei
-    size
-    timePurchased
-    district
-    parcel {
- 			  id
- 			}
-  }
-}
-
-
-
-'''
-query2= '''
-{
-  erc721Listings (orderBy:tokenId,first:1000,where:{category:4,timePurchased:0,cancelled:false}) {
-         id
-    category
-    priceInWei
-    size
-    timePurchased
-    district
-    parcel {
-               id 
-             }
-  }
-}
-
-
-
-'''
-query3 = '''
-{
-  erc721Listings (orderBy:tokenId,first:1000,skip:1000,where:{category:4,timePurchased:0,cancelled:false}) {
-         id
-    category
-    priceInWei
-    size
-    timePurchased
-    district
-    parcel {
-               id 
-             }
-  }
-}
-
-'''
-query4 = '''
-{
-  erc721Listings (orderBy:tokenId,first:1000,where:{category:4,timePurchased:0,cancelled:false}) {
-         id
-    category
-    priceInWei
-    size
-    timePurchased
-    district
-    coordinateX
-    coordinateY
-    parcel {
-               id 
-             }
-  }
-}
-
-'''
-query5 = '''
-{
-  erc721Listings (orderBy:tokenId,first:1000,skip:1000,where:{category:4,timePurchased:0,cancelled:false}) {
-         id
-    category
-    priceInWei
-    size
-    timePurchased
-    district
-    coordinateX
-    coordinateY
-    parcel {
-               id 
-             }
-  }
-}
-
-'''
-query6 = '''
-{
-  erc721Listings (orderBy:tokenId,first:1000,skip:2000,where:{category:4,timePurchased:0,cancelled:false}) {
-         id
-    category
-    priceInWei
-    size
-    timePurchased
-    district
-    coordinateX
-    coordinateY
-    parcel {
-               id 
-             }
-  }
-}
-
-'''
 
 result6 = run_query(query6)
 result5 = run_query(query5)
