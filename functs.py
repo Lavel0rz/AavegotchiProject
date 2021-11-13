@@ -157,7 +157,7 @@ def districtfloorswalls(df2,D,Size):
     df3 = df2[df2['distrito']==D]
     df4 = df3[df3['tamaño']==Size]
     df4 = df4[(df4['CoorX'] >= 2448)]
-    df4 = df4[(df4['CoorY'] >=1544)]
+    df4 = df4[(df4['CoorY'] >= 1544)]
     df4 = df4[(df4['CoorY'] <= 4736)]
     grouped = df4.groupby(['precio'])['BazaarID'].min()
     x = (grouped.values[0])
@@ -165,6 +165,30 @@ def districtfloorswalls(df2,D,Size):
     url = "https://aavegotchi.com/baazaar/erc721/" + str(x)
     return st.write(f"Current Floor:     {y}$GHST  [" + url + "](" + url + ")")
 
+def districtfloorswalls1(df2,D,Size):
+    if Size == 'Humble':
+        Size = 0
+    elif Size == 'Reasonable':
+        Size = 1
+    elif Size == 'Vertical Spacious':
+        Size = 2
+    else:
+        Size = 3
+    df2['CoorX'] = df2['CoorX'].astype(int)
+    df2['CoorY'] = df2['CoorY'].astype(int)
+    df2['distrito']=df2['distrito'].astype(int)
+    df2['tamaño'] = df2['tamaño'].astype(int)
+    df3 = df2[df2['distrito']==D]
+    df4 = df3[df3['tamaño']==Size]
+
+    df4 = df4[(df4['CoorX'] >= 3880)]
+    df4 = df4[(df4['CoorY'] >= 2408)]
+    df4 = df4[(df4['CoorY'] <= 3880)]
+    grouped = df4.groupby(['precio'])['BazaarID'].min()
+    x1 = (grouped.values[0])
+    y1 = grouped.index[0]
+    url1 = "https://aavegotchi.com/baazaar/erc721/" + str(x1)
+    return st.write(f"Current Floor:     {y1}$GHST  [" + url1 + "](" + url1 + ")")
 def run_query(data):
     request = requests.post('https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
                             '',

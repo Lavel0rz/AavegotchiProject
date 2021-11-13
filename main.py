@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3,districtfloorswalls
+from functs import grafico,prepro,prepro2,districtfloors,run_query,loaded_model,searchID,prepro3,districtfloorswalls,districtfloorswalls1
 from Graficas import plotter
 from querys import query,query2,query3,query4,query5,query6,query7,query8,query9
 
@@ -31,7 +31,7 @@ df10 = prepro(result9)
 df9 = pd.concat([df,df8])
 
 dfparcels = pd.concat([df4,df5,df6])
-print(df9)
+
 st.set_page_config(page_title="Aavegotchi", page_icon="money", layout='wide', initial_sidebar_state='auto')
 
 option = st.sidebar.selectbox('Home',['HOME','Districts Visualizer','Floor Sniper','Price Estimator','Neighboring Parcels','Bazaar Stats'])
@@ -54,12 +54,21 @@ if option == 'Floor Sniper':
         districtfloors(df3,D,Size)
         time.sleep(2)
     except:st.error('No parcels found!')
+    if D == 1:
+        x = st.checkbox('You are in D1!, check for the most inner walls if you wish')
+        if x:
+            try:
+                districtfloorswalls1(df3,D,Size)
+            except:
+                st.error('No inner wall parcels found!')
     if st.checkbox('Check for main Inner walls Parcels too!'):
         try:
             districtfloorswalls(df3,D,Size)
             st.image('wallz.png',width=650)
         except:
             st.error('No inner wall parcels found!')
+
+
 
 if option == 'Price Estimator':
     st.write("Here's a little price estimator fueled by Machine Learning! Keep in mind the model is not perfect and it seems to not weight Kinship/EXP, take the estimation with a grain of salt")
