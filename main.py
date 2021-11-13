@@ -59,9 +59,11 @@ if option == 'Floor Sniper':
         if x:
             try:
                 districtfloorswalls1(df3,D,Size)
+                st.image('wallz.png', width=650)
             except:
                 st.error('No inner wall parcels found!')
-    if st.checkbox('Check for main Inner walls Parcels too!'):
+    else:
+        st.checkbox('Check for main Inner walls Parcels too!')
         try:
             districtfloorswalls(df3,D,Size)
             st.image('wallz.png',width=650)
