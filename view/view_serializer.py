@@ -9,7 +9,7 @@ from service.functs import grafico, districtfloors, districtfloorswalls1, distri
 SALES_DF = pd.read_csv('FechaVentas.csv')
 GHOST_DF = pd.read_csv('GHSTPRICE.csv')
 
-
+#clases
 class ViewSerializer(object):
 
     def __init__(self, stream_lit):
@@ -28,9 +28,10 @@ class ViewSerializer(object):
                                                   43])
 
         grafico(AavegotchiRepository.get_district_visualizer_data_frame(), district)
-        time.sleep(2)
+        time.sleep(0.5)
 
-    def render_floor_sniper(self, df):
+    def render_floor_sniper(self):
+        df = AavegotchiRepository.get_floor_sniper_df()
         available_districts = self.stream_lit.selectbox('Choose District',
                                                         (1, 2, 3, 4, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 39, 40, 41,
                                                          42, 43))
@@ -38,7 +39,7 @@ class ViewSerializer(object):
                                          ('Humble', 'Reasonable', 'Vertical Spacious', 'Horizontal Spacious'))
         try:
             districtfloors(df, available_districts, size)
-            time.sleep(2)
+            time.sleep(0.5)
         except:
             self.stream_lit.error('No parcels found!')
         if available_districts == 1:
@@ -88,7 +89,8 @@ class ViewSerializer(object):
         prediction_values.append(HAUNT)
         return prediction_values
 
-    def render_neighbour_parcels(self, df_parcels):
+    def render_neighbour_parcels(self):
+        df_parcels = AavegotchiRepository.get_neighbouring_parcels_df()
         self.stream_lit.title('Search for neighboring parcels near yours')
         self.stream_lit.text(
             'This little widget will look for listed parcels in the bazaar and pull the closest one to the one you '
@@ -104,9 +106,9 @@ class ViewSerializer(object):
         col1, mid, col2 = self.stream_lit.columns([1, 1, 2])
 
         with col1:
-            self.stream_lit(SALES_DF, 'avg', title='Average Gotchi Weekly Sales in $GHST')
+            plotter(SALES_DF, 'avg', title='Average Gotchi Weekly Sales in $GHST')
         with col2:
-            self.stream_lit(SALES_DF, None, title='Volume Gotchi Weekly Sales in $GHST')
+            plotter(SALES_DF, None, title='Volume Gotchi Weekly Sales in $GHST')
 
         col3, mid2, col4 = self.stream_lit.columns([1, 1, 2])
         with col3:
