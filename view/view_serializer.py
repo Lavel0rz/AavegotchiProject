@@ -1,8 +1,12 @@
 import time
 
+import pandas as pd
+
 from graphics import plotter
-from main import SALES_DF, GHOST_DF
 from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id
+
+SALES_DF = pd.read_csv('FechaVentas.csv')
+GHOST_DF = pd.read_csv('GHSTPRICE.csv')
 
 
 class ViewSerializer(object):

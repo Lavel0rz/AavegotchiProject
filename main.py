@@ -5,8 +5,6 @@ from querys import query, query2, query3, query4, query5, query6, query7, query8
 from service.functs import prepro, prepro2, execute_query, prepro3
 from view.view_serializer import ViewSerializer
 
-SALES_DF = pd.read_csv('FechaVentas.csv')
-GHOST_DF = pd.read_csv('GHSTPRICE.csv')
 ROOT_PATH = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
 result9 = execute_query(query9)
