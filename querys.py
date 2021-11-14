@@ -15,7 +15,7 @@ query = '''
 
 
 '''
-query2= '''
+query2 = '''
 {
   erc721Listings (orderBy:tokenId,first:1000,where:{category:4,timePurchased:0,cancelled:false}) {
          id
