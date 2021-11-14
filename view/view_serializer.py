@@ -6,8 +6,8 @@ from graphics import plotter
 from service.aavegotchi_repository import AavegotchiRepository
 from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id
 
-SALES_DF = pd.read_csv('FechaVentas.csv')
-GHOST_DF = pd.read_csv('GHSTPRICE.csv')
+SALES_DF = pd.read_csv('src/dfs/FechaVentas.csv')
+GHOST_DF = pd.read_csv('src/dfs/GHSTPRICE.csv')
 
 #clases
 class ViewSerializer(object):
@@ -17,10 +17,10 @@ class ViewSerializer(object):
 
     def render_home(self):
         self.stream_lit.header('WELCOME TO THE GOTCHIVERSE')
-        self.stream_lit.image('citadelimage.png')
+        self.stream_lit.image('src/imgs/citadelimage.png')
 
     def render_district_visualizer(self):
-        self.stream_lit.image('districts.jpg', width=450)
+        self.stream_lit.image('src/imgs/districts.jpg', width=450)
         self.stream_lit.title('Aavegotchi Parcels Average Bazaar Prices By District')
 
         district = self.stream_lit.select_slider('Select District',
@@ -47,7 +47,7 @@ class ViewSerializer(object):
             if x:
                 try:
                     districtfloorswalls1(df, available_districts, size)
-                    self.stream_lit.image('wallz.png', width=650)
+                    self.stream_lit.image('src/imgs/wallz.png', width=650)
                 except:
                     self.stream_lit.error('No inner wall parcels found!')
         else:
@@ -55,7 +55,7 @@ class ViewSerializer(object):
             if y:
                 try:
                     districtfloorswalls(df, available_districts, size)
-                    self.stream_lit.image('wallz.png', width=650)
+                    self.stream_lit.image('src/imgs/wallz.png', width=650)
                 except:
                     self.stream_lit.error('No inner wall parcels found!')
 
@@ -65,9 +65,9 @@ class ViewSerializer(object):
             "seems to not weight Kinship/EXP, take the estimation with a grain of salt")
         col1, mid, col2 = self.stream_lit.columns([1, 1, 2])
         with col1:
-            self.stream_lit.image('gotchistats.png', width=500)
+            self.stream_lit.image('src/imgs/gotchistats.png', width=500)
         with col2:
-            self.stream_lit.image('features.png')
+            self.stream_lit.image('src/imgs/features.png')
         prediction = loaded_model.predict([self.populate_prediction_values()])
         self.stream_lit.markdown(f"""Estimation : {int(prediction)}$GHST""")
 

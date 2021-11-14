@@ -8,7 +8,7 @@ import streamlit as st
 
 # load model
 loaded_model = pickle.load(open('final.pkl', 'rb'))
-allparcels = pd.read_csv('ALLparcels.csv')
+allparcels = pd.read_csv('src/dfs/ALLparcels.csv')
 
 allparcels['ParcelID'] = allparcels['ParcelID'].astype(int)
 allparcels['CoorX'] = allparcels['CoorX'].astype(int)
