@@ -8,14 +8,12 @@ from view.view_serializer import ViewSerializer
 ROOT_PATH = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
 result9 = execute_query(query9)
-result8 = execute_query(query8)
 result7 = execute_query(query7)
 result6 = execute_query(query6)
 result5 = execute_query(query5)
 result4 = execute_query(query4)
 result2 = execute_query(query2)
 result3 = execute_query(query3)
-result = execute_query(query)
 df7 = prepro2(result7)
 df6 = prepro3(result6)
 df5 = prepro3(result5)
@@ -24,10 +22,7 @@ df1 = prepro2(result2)
 df2 = prepro2(result3)
 floor_sniping_data = pd.concat([df1, df2])
 floor_sniping_data = pd.concat([floor_sniping_data, df7])
-df8 = prepro(result8)
-df = prepro(result)
 df10 = prepro(result9)
-districts_visualizer_data = pd.concat([df, df8])
 
 df_parcels = pd.concat([df4, df5, df6])
 
@@ -44,7 +39,7 @@ if option == 'HOME':
     view_serializer.render_home()
 
 if option == 'Districts Visualizer':
-    view_serializer.render_district_visualizer(districts_visualizer_data)
+    view_serializer.render_district_visualizer()
 
 if option == 'Floor Sniper':
     view_serializer.render_floor_sniper(floor_sniping_data)
