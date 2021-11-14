@@ -3,6 +3,7 @@ import time
 import pandas as pd
 
 from graphics import plotter
+from service.aavegotchi_repository import AavegotchiRepository
 from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id
 
 SALES_DF = pd.read_csv('FechaVentas.csv')
@@ -18,7 +19,7 @@ class ViewSerializer(object):
         self.stream_lit.header('WELCOME TO THE GOTCHIVERSE')
         self.stream_lit.image('citadelimage.png')
 
-    def render_district_visualizer(self, df):
+    def render_district_visualizer(self):
         self.stream_lit.image('districts.jpg', width=450)
         self.stream_lit.title('Aavegotchi Parcels Average Bazaar Prices By District')
 
@@ -26,7 +27,7 @@ class ViewSerializer(object):
                                                  [1, 2, 3, 4, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 39, 40, 41, 42,
                                                   43])
 
-        grafico(df, district)
+        grafico(AavegotchiRepository.get_district_visualizer_data_frame(), district)
         time.sleep(2)
 
     def render_floor_sniper(self, df):
