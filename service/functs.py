@@ -105,7 +105,9 @@ def preprowear(data):
     df['Price']=df['Price'].astype(float)
     df['Price'] = df['Price'].apply(lambda x: x/1000000000000000000)
     df['BazaarID']=df['BazaarID'].astype(int)
-    df['BazaarID'] = df['BazaarID'].apply(lambda x: f'https://aavegotchi.com/baazaar/erc1155/' + str(x))
+
+    df['BazaarID'] = df['BazaarID'].apply(lambda x: 'https://aavegotchi.com/baazaar/erc1155/' + str(x))
+
     return df
 
 def prepro3(data):

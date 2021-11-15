@@ -50,6 +50,5 @@ class AavegotchiRepository(object):
         mergeddf = finaldf.merge(iddf)
         mergeddf.drop('Unnamed: 0', inplace=True, axis=1)
         mergeddf['Rarity']=mergeddf['Rarity'].astype(int)
-        print(mergeddf)
         return mergeddf
 
