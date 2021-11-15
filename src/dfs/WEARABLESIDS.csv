@@ -1,0 +1,226 @@
+,Names,ID
+0,Camo Hat,1
+1,Camo Pants,2
+2,MK2 Grenade,3
+3,Snow Camo Hat,4
+4,Snow Camo Pants,5
+5,M67 Grenade,6
+6,Marine Cap,7
+7,Marine Jacket,8
+8,Walkie Talkie,9
+9,Link White Hat,10
+10,Link Mess Dress,11
+11,Link Bubbly,12
+12,Sergey Beard,13
+13,Sergey Eyes,14
+14,Red Plaid,15
+15,Blue Plaid,16
+16,LINK Cube,17
+17,Aave Hero Mask,18
+18,Aave Hero Shirt,19
+19,Aave Plush Toy,20
+20,Captain Aave Mask,21
+21,Captain Aave Suit,22
+22,Captain Aave Shield,23
+23,Thaave Helmet,24
+24,Thaave Suit,25
+25,Thaave Hammer,26
+26,Marc Hair,27
+27,Marc Outfit,28
+28,REKT Sign,29
+29,Jordan Hair,30
+30,Jordan Suit,31
+31,Aave Flag,32
+32,Stani Hair,33
+33,Stani Lifejacket,34
+34,Aave Boat,35
+35,ETH Logo Glasses,36
+36,ETH TShirt,37
+37,32 ETH Coin,38
+38,Foxy Mask,39
+39,Foxy Tail,40
+40,Trezor Wallet,41
+41,Eagle Mask,42
+42,Nogara Armor,43
+43,DAO Egg,44
+44,Ape Mask,45
+45,Half Rekt Shirt,46
+46,Waifu Pillow,47
+47,Xibot Mohawk,48
+48,Coderdan Shades,49
+49,GldnXross Robe,50
+50,Mudgen Diamond,51
+51,Galaxy Brain,52
+52,All Seeing Eyes,53
+53,Llamacorn Shirt,54
+54,Aagent Headset,55
+55,Aagent Shirt,56
+56,Aagent Shades,57
+57,Aagent Pistol,58
+58,Aagent Fedora Hat,59
+59,Common Wizard Hat,60
+60,Legendary Wizard Hat,61
+61,Mythical Wizard Hat,62
+62,Godlike Wizard Hat,63
+63,Common Wizard Staff,64
+64,Legendary Wizard Staff,65
+65,Wizard Visor,66
+66,Straw Hat,67
+67,Farmer Jeans,68
+68,Pitchfork,69
+69,Handsaw,70
+70,Red Santa Hat,71
+71,Jaay Hairpiece,72
+72,Jaay Glasses,73
+73,Jaay Suit,74
+74,OKex Sign,75
+75,Big GHST Token,76
+76,Bitcoin Beanie,77
+77,Black Jeans,78
+78,Skateboard,79
+79,Sushi Bandana,80
+80,Sushi Coat,81
+81,Sushi Piece,82
+82,Sushi Knife,83
+83,Gentleman Hat,84
+84,Gentleman Coat,85
+85,Monocle,86
+86,Miner Helmet,87
+87,Miner Jeans,88
+88,Pickaxe,89
+89,Pajama Hat,90
+90,Pajama Shirt,91
+91,Bedtime Milk,92
+92,Fluffy Pillow,93
+93,Sweatband,94
+94,Track Shorts,95
+95,Water bottle,96
+96,Pillbox Hat,97
+97,Day Dress,98
+98,Parasol,99
+99,Clutch,100
+100,Witchy Hat,101
+101,Witchy Cloak,102
+102,Witchy Wand,103
+103,Portal Mage Helmet,104
+104,Portal Mage Armor,105
+105,Portal Mage Axe,106
+106,Portal Mage Black Axe,107
+107,Rasta Hat,108
+108,Rasta Shirt,109
+109,Jamaican Flag,110
+110,Hazmat Hood,111
+111,Hazmat Suit,112
+112,Uranium Rod,113
+113,Red Hawaiian Shirt,114
+114,Blue Hawaiian Shirt,115
+115,Coconut,116
+116,Cool Shades,117
+117,Water Jug,118
+118,Baby Bottle,119
+119,Martini,120
+120,Wine,121
+121,Milkshake,122
+122,Apple Juice,123
+123,Beer Helmet,124
+124,Track Suit,125
+125,Kinship Potion,126
+126,Greater Kinship Potion,127
+127,XP Potion,128
+128,Greater XP Potion,129
+129,Fireball,130
+130,Dragon Horns,131
+131,Dragon Wings,132
+132,Pointy Horns,133
+133,L2 Sign,134
+134,Polygon Shirt,135
+135,Polygon Cap,136
+136,Vote Sign,137
+137,Snapshot Shirt,138
+138,Snapshot Cap,139
+139,Elf Ears,140
+140,Gemstone Ring,141
+141,Princess Tiara,142
+142,Gold Necklace,143
+143,Princess Hair,144
+144,Godli Locks,145
+145,Imperial Moustache,146
+146,Tiny Crown,147
+147,Royal Scepter,148
+148,Royal Crown,149
+149,Royal Robes,150
+150,Common Rofl,151
+151,Uncommon Rofl,152
+152,Rare Rofl,153
+153,Legendary Rofl,154
+154,Mythical Rofl,155
+155,Royal Rofl,156
+156,Lil Pump Goatee,157
+157,Lil Pump Drank,158
+158,Lil Pump Shades,159
+159,Lil Pump Threads,160
+160,Lil Pump Dreads,161
+161,Steampunk Goggles,199
+162,Steampunk Trousers,200
+163,Mechanical Claw,201
+164,VR Headset,202
+165,Gamer Jacket,203
+166,Game Controller,204
+167,Gotchi Mug,205
+168,Biker Helmet,206
+169,Biker Jacket,207
+170,Aviators,208
+171,Horseshoe Mustache,209
+172,Guy Fawkes Mask,211
+173,1337 Laptop,212
+174,H4xx0r Shirt,213
+175,Matrix Eyes,214
+176,Cyborg Eye,215
+177,Rainbow Vomit,216
+178,Energy Gun,217
+179,Mohawk,218
+180,Mutton Chops,219
+181,Punk Shirt,220
+182,Pirate Hat,221
+183,Pirate Coat,222
+184,Hook Hand,223
+185,Pirate Patch,224
+186,Basketball,225
+187,Red Headband,226
+188,23 Jersey,227
+189,10 Gallon Hat,228
+190,Lasso,229
+191,Wraangler Jeans,230
+192,Comfy Poncho,231
+193,Poncho Hoodie,232
+194,Uncommon Cacti,233
+195,Shaaman Poncho,234
+196,Shaaman Hoodie,235
+197,Blue Cacti,236
+198,Mythical Cacti,237
+199,Godlike Cacti,238
+200,Wagie Cap,239
+201,Headphones,240
+202,WGMI Shirt,241
+203,Yellow Manbun,242
+204,Tinted Shades,243
+205,V-Neck Shirt,244
+206,Gecko Hat,245
+207,APY Shades,246
+208,Up Arrow,247
+209,Up Only Shirt,248
+210,Gecko Eyes,249
+211,CoinGecko Tee,250
+212,Candy Jaar,251
+213,Aastronaut Helmet,252
+214,Aastronaut Suit,253
+215,uGOTCHI Token,254
+216,Space Helmet,255
+217,Lil Bubble Space Suit,256
+218,Bitcoin Guitar,257
+219,Taoist Robe,258
+220,Bushy Eyebrows,259
+221,Beard of Wisdom,260
+222,Aantenna Bot,261
+223,Radar Eyes,262
+224,Signal Headset,263

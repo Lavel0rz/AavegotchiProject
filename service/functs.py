@@ -83,7 +83,30 @@ def prepro2(data):
     df['precio'] = df['precio'].astype(float)
     df['precio'] = df['precio'].apply(lambda x: x / 1000000000000000000)
     return df
-
+def preprowear(data):
+    newdic = data.get('data',0)
+    newdic2 = newdic.get('erc1155Listings')
+    nuevos = []
+    new = []
+    new2 = []
+    new3 = []
+    new4 = []
+    for i in newdic2:
+        nuevos.append(i)
+    for i in nuevos:
+        new.append(i.get('priceInWei'))
+        new2.append(i.get('erc1155TypeId'))
+        new3.append(i.get('rarityLevel'))
+        new4.append(i.get('id'))
+    df = pd.DataFrame({'Price':new,
+                 'ID':new2,
+                 'Rarity':new3,
+                 'BazaarID':new4})
+    df['Price']=df['Price'].astype(float)
+    df['Price'] = df['Price'].apply(lambda x: x/1000000000000000000)
+    df['BazaarID']=df['BazaarID'].astype(int)
+    df['BazaarID'] = df['BazaarID'].apply(lambda x: f'https://aavegotchi.com/baazaar/erc1155/' + str(x))
+    return df
 
 def prepro3(data):
     newdic = data.get('data', 0)
@@ -242,3 +265,73 @@ def search_id(df, parcel_id):
 
     url = "https://aavegotchi.com/baazaar/erc721/" + str(closer_values)
     return st.write(f"Current Closest Parcel For Sale: [" + url + "](" + url + ")")
+
+def floorwearables(rarity,name):
+
+
+    if name == 'Common':
+        rarity = rarity[rarity['Rarity'] == 0]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+    elif name == 'Uncommon':
+        rarity = rarity[rarity['Rarity'] == 1]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+    elif name == 'Rare':
+        rarity = rarity[rarity['Rarity'] == 2]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+    elif name == 'Legendary':
+        rarity = rarity[rarity['Rarity'] == 3]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+    elif name == 'Mythical':
+        rarity = rarity[rarity['Rarity'] == 4]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+    elif name == 'Godlike':
+        rarity = rarity[rarity['Rarity'] == 5]
+        rarity = rarity.sort_values(by='Price')
+        rarity['Names'] = rarity['Names'].drop_duplicates(keep='first')
+        floors = rarity.dropna()
+        floors = floors.reset_index()
+        floors.drop('ID', axis=1, inplace=True)
+        floors.drop('index', axis=1, inplace=True)
+        floors.drop('Rarity', axis=1, inplace=True)
+        return st.dataframe(floors)
+
+
+
+
+
+

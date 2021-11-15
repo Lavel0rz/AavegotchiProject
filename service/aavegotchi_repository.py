@@ -1,9 +1,7 @@
 import pandas as pd
 
-from querys import query, query8, query3, query2, query7, query6, query5, query4
-from service.functs import execute_query, prepro, prepro2, prepro3
-
-
+from querys import *
+from service.functs import execute_query, prepro, prepro2, prepro3, preprowear
 class AavegotchiRepository(object):
 
     @staticmethod
@@ -36,3 +34,22 @@ class AavegotchiRepository(object):
         df4 = prepro3(result4)
         df_parcels = pd.concat([df4, df5, df6])
         return df_parcels
+
+    @staticmethod
+    def get_wearables_floor_df():
+        resultwear = execute_query(query10)
+        resultwear2 = execute_query(query11)
+        resultwear3 = execute_query(query12)
+        weardf = preprowear(resultwear)
+        weardf2 = preprowear(resultwear2)
+        weardf3 = preprowear(resultwear3)
+        finaldf = pd.concat([weardf, weardf2, weardf3])
+        finaldf['ID']=finaldf['ID'].astype(int)
+        iddf = pd.read_csv('src/dfs/WEARABLESIDS.csv')
+        iddf['ID']=iddf['ID'].astype(int)
+        mergeddf = finaldf.merge(iddf)
+        mergeddf.drop('Unnamed: 0', inplace=True, axis=1)
+        mergeddf['Rarity']=mergeddf['Rarity'].astype(int)
+        print(mergeddf)
+        return mergeddf
+

@@ -159,3 +159,48 @@ query9 = '''
 
 
 '''
+query10 = '''
+{
+  erc1155Listings (first:1000,where:{sold:false,cancelled:false,category:0}) {
+    priceInWei
+    category
+		id
+  	sold
+    rarityLevel
+    erc1155TypeId
+    quantity
+
+  }
+}
+
+'''
+query11 = '''
+{
+  erc1155Listings (first:1000,skip:1000,where:{sold:false,cancelled:false,category:0}) {
+    priceInWei
+    category
+		id
+  	sold
+    rarityLevel
+    erc1155TypeId
+    quantity
+
+  }
+}
+
+'''
+query12 = '''
+{
+  erc1155Listings (first:1000,skip:2000,where:{sold:false,cancelled:false,category:0}) {
+    priceInWei
+    category
+		id
+  	sold
+    rarityLevel
+    erc1155TypeId
+    quantity
+
+  }
+}
+
+'''

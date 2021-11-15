@@ -4,7 +4,7 @@ import pandas as pd
 
 from graphics import plotter
 from service.aavegotchi_repository import AavegotchiRepository
-from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id
+from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id, floorwearables
 
 SALES_DF = pd.read_csv('src/dfs/FechaVentas.csv')
 GHOST_DF = pd.read_csv('src/dfs/GHSTPRICE.csv')
@@ -115,3 +115,13 @@ class ViewSerializer(object):
             plotter(SALES_DF, 'min', title='Floor Gotchi Weekly Prices in $GHST')
         with col4:
             plotter(GHOST_DF, 'avg', title='$GHST Monthly Average Price')
+
+    def render_floor_sniper_wearables(self):
+        self.stream_lit.title('Floor Prices for Wearables')
+        name = self.stream_lit.sidebar.selectbox('Wearable Floors',
+                                            ['Common', 'Uncommon', 'Rare', 'Legendary',
+                                             'Mythical',
+                                             'Godlike'])
+        df = AavegotchiRepository.get_wearables_floor_df()
+        return floorwearables(df, name)
+

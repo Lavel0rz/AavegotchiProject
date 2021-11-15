@@ -1,6 +1,6 @@
 import streamlit as stream_lit
-
 from view.view_serializer import ViewSerializer
+
 
 ROOT_PATH = "https://thegraph.com/hosted-service/subgraph/aavegotchi/aavegotchi-core-matic?Aavegotchi?id:1!"
 
@@ -9,7 +9,7 @@ stream_lit.set_page_config(page_title="Aavegotchi", page_icon="money", layout='w
 option = stream_lit.sidebar.selectbox('Home',
                                       ['HOME', 'Districts Visualizer', 'Floor Sniper', 'Price Estimator',
                                        'Neighbour Parcels',
-                                       'Bazaar Stats'])
+                                       'Bazaar Stats','Wearable Floors Overview'])
 
 view_serializer = ViewSerializer(stream_lit)
 
@@ -22,6 +22,7 @@ if option == 'Districts Visualizer':
 if option == 'Floor Sniper':
     view_serializer.render_floor_sniper()
 
+
 if option == 'Price Estimator':
     view_serializer.render_price_estimator()
 
@@ -30,3 +31,6 @@ if option == 'Neighbour Parcels':
 
 if option == 'Bazaar Stats':
     view_serializer.render_bazaar_stats()
+
+if option == 'Wearable Floors Overview':
+    view_serializer.render_floor_sniper_wearables()
