@@ -16,6 +16,7 @@ allparcels['CoorY'] = allparcels['CoorY'].astype(int)
 
 
 def grafico(df, district):
+    df = df.dropna()
     df['distrito'] = df['distrito'].astype(int)
     df['tamaño'] = df['tamaño'].astype(int)
     df['tamaño'] = df['tamaño'].apply(sizer)
