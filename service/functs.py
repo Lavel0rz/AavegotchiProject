@@ -281,7 +281,10 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
+
     elif name == 'Uncommon':
         rarity = rarity[rarity['Rarity'] == 1]
         rarity = rarity.sort_values(by='Price')
@@ -291,7 +294,10 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
+
     elif name == 'Rare':
         rarity = rarity[rarity['Rarity'] == 2]
         rarity = rarity.sort_values(by='Price')
@@ -301,7 +307,9 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
     elif name == 'Legendary':
         rarity = rarity[rarity['Rarity'] == 3]
         rarity = rarity.sort_values(by='Price')
@@ -311,7 +319,9 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
     elif name == 'Mythical':
         rarity = rarity[rarity['Rarity'] == 4]
         rarity = rarity.sort_values(by='Price')
@@ -321,7 +331,9 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
     elif name == 'Godlike':
         rarity = rarity[rarity['Rarity'] == 5]
         rarity = rarity.sort_values(by='Price')
@@ -331,7 +343,9 @@ def floorwearables(rarity,name):
         floors.drop('ID', axis=1, inplace=True)
         floors.drop('index', axis=1, inplace=True)
         floors.drop('Rarity', axis=1, inplace=True)
-        return st.dataframe(floors)
+        return st.markdown(
+            floors.to_html(render_links=True),
+            unsafe_allow_html=True)
 
 
 
