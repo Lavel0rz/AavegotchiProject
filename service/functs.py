@@ -20,14 +20,21 @@ def grafico(df, district):
     df['distrito'] = df['distrito'].astype(int)
     df['tamaño'] = df['tamaño'].astype(int)
     df['tamaño'] = df['tamaño'].apply(sizer)
+    df['precio']=df['precio'].astype(int)
     df2 = df[df['distrito'] == district]
     total = len(df2)
     primer = df2.groupby('tamaño')['precio'].mean()
-    fig = px.bar(primer, x=primer.index, title=f'Average Prices of Sold Parcels in district {district}', y='precio',
-                 width=600, height=400,color=primer.index,
+    newvalues =[]
+    for i in primer.values:
+        i = round(i)
+        newvalues.append(i)
+    fig = px.bar(primer, x=primer.index, title=f'Average Prices of Sold Parcels in district {district}', y=newvalues,
+                 width=600, height=400,color=primer.index,text= newvalues,
                  labels={  # replaces default labels by column name
-                     "precio": "Mean Price", 'tamaño': 'Parcel Size'
+                     'precio': "Mean Price", 'tamaño': 'Parcel Size'
                  })
+    fig.update_layout(
+        yaxis_title="Avg Price",)
     return st.plotly_chart(fig), st.text(f'Total number of parcels sold in this district: {total}')
 
 
