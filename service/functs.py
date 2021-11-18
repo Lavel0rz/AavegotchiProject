@@ -24,7 +24,7 @@ def grafico(df, district):
     total = len(df2)
     primer = df2.groupby('tamaño')['precio'].mean()
     fig = px.bar(primer, x=primer.index, title=f'Average Prices of Sold Parcels in district {district}', y='precio',
-                 width=600, height=400,
+                 width=600, height=400,color=primer.index,
                  labels={  # replaces default labels by column name
                      "precio": "Mean Price", 'tamaño': 'Parcel Size'
                  })
