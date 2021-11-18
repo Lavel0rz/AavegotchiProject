@@ -36,4 +36,5 @@ if option == 'Wearable Floors Overview':
     view_serializer.render_floor_sniper_wearables()
 
 if option == 'Donate':
+    st.image('loveghst.jpg',width=500)
     st.text('If you feel like supporting my work you can donate so I can keep updating this web app! 0xbC44A93bF334e872f1cf004Bb0Ccde28E8fCb8Ea , GHST or MATIC appreciated!')
