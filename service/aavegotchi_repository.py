@@ -8,20 +8,24 @@ class AavegotchiRepository(object):
     def get_district_visualizer_data_frame():
         result = execute_query(query)
         result8 = execute_query(query8)
+        result13 = execute_query(query13)
         df8 = prepro(result8)
         df = prepro(result)
-        return pd.concat([df, df8])
+        df13 = prepro(result13)
+        return pd.concat([df, df8,df13])
 
     @staticmethod
     def get_floor_sniper_df():
         result2 = execute_query(query2)
         result3 = execute_query(query3)
         result7 = execute_query(query7)
+        result14 = execute_query(query14)
         df1 = prepro2(result2)
         df2 = prepro2(result3)
         df7 = prepro2(result7)
+        df14 = prepro(result14)
         floor_sniping_data = pd.concat([df1, df2])
-        floor_sniping_data = pd.concat([floor_sniping_data, df7])
+        floor_sniping_data = pd.concat([floor_sniping_data, df7,df14])
         return floor_sniping_data
 
     @staticmethod

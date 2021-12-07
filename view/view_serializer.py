@@ -2,6 +2,7 @@ import time
 
 import pandas as pd
 
+
 from graphics import plotter
 from service.aavegotchi_repository import AavegotchiRepository
 from service.functs import grafico, districtfloors, districtfloorswalls1, districtfloorswalls, loaded_model, search_id, floorwearables
@@ -24,17 +25,18 @@ class ViewSerializer(object):
         self.stream_lit.title('Aavegotchi Parcels Average Bazaar Prices By District')
 
         district = self.stream_lit.select_slider('Select District',
-                                                 [1, 2, 3, 4, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 39, 40, 41, 42,
-                                                  43])
+                                                 list(range(1,44)))
+        try:
 
-        grafico(AavegotchiRepository.get_district_visualizer_data_frame(), district)
-        time.sleep(0.5)
+            grafico(AavegotchiRepository.get_district_visualizer_data_frame(), district)
+            time.sleep(0.5)
+        except:
+            self.stream_lit.warning('No Sales found in this district')
 
     def render_floor_sniper(self):
         df = AavegotchiRepository.get_floor_sniper_df()
         available_districts = self.stream_lit.selectbox('Choose District',
-                                                        (1, 2, 3, 4, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 39, 40, 41,
-                                                         42, 43))
+                                                        list(range(1,44)))
         size = self.stream_lit.selectbox('Choose Size',
                                          ('Humble', 'Reasonable', 'Vertical Spacious', 'Horizontal Spacious'))
         try:
