@@ -3,4 +3,4 @@ numpy
 plotly
 matplotlib
 requests
-sklearn
+scikit-learn
